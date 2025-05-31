@@ -1,4 +1,6 @@
 package ru.sudokakado.tgbotclient.models
 
-class Update {
+data class Update(
+    var updateId: Int
+) {
 }
