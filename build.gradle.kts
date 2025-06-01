@@ -1,9 +1,11 @@
+import io.gitlab.arturbosch.detekt.Detekt
+
 plugins {
 	kotlin("jvm") version libs.versions.kotlin
 	kotlin("plugin.spring") version "1.9.25"
 	id("org.springframework.boot") version libs.versions.spring
 	id("io.spring.dependency-management") version "1.1.7"
-	checkstyle
+	alias(libs.plugins.detekt)
 }
 
 group = "ru.sudokakado"
@@ -38,6 +40,29 @@ kotlin {
 	}
 }
 
+detekt {
+	toolVersion = "1.23.8"
+	config.setFrom(file("config/detekt/detekt.yml"))
+	buildUponDefaultConfig = true
+}
+
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+tasks.withType<Detekt>().configureEach {
+	reports {
+		xml.required.set(false)
+		html.required.set(true)
+		sarif.required.set(false)
+		md.required.set(true)
+	}
+}
+
+configurations.matching { it.name == "detekt" }.all {
+	resolutionStrategy.eachDependency {
+		if (requested.group == "org.jetbrains.kotlin") {
+			useVersion("2.0.21")
+		}
+	}
 }
