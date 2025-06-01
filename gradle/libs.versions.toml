@@ -1,10 +1,15 @@
 [versions]
-kotlin = "2.0.0"
+kotlin = "2.1.21"
 jackson = "2.19.0"
 spring = "3.5.0"
+webflux = "7.0.0-M5"
 
 [libraries]
 jackson-core = { module = "com.fasterxml.jackson.core:jackson-core", version.ref = "jackson" }
 jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
 jackson-annotations = { module = "com.fasterxml.jackson.core:jackson-annotations", version.ref = "jackson" }
 spring-web = { module = "org.springframework.boot:spring-boot-starter-web", version.ref = "spring" }
+spring-webflux = { module = "org.springframework:spring-webflux", version.ref = "webflux" }
+
+[plugins]
+detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.23.8" }
