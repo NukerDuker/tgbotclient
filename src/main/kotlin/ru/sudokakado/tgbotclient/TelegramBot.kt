@@ -1,8 +1,10 @@
 package ru.sudokakado.tgbotclient
 
+import io.github.oshai.kotlinlogging.KotlinLogging.logger
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
 import ru.sudokakado.tgbotclient.models.Update
+private val logger = logger {}
 
 @Component
 class TelegramBot(
@@ -12,7 +14,7 @@ class TelegramBot(
     private val botUsername: String) {
 
     fun onUpdateReceived(update: Update): Unit {
-        println("Some logic with update: $update")
+        logger.info { "Update received $update" }
     }
 
     fun getBotToken(): String {

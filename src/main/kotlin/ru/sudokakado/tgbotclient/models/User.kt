@@ -4,8 +4,10 @@ import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-data class Update(
-    @JsonProperty("update_id")
-    val updateId: Int,
-    val message: Message
+data class User(
+    val id: Int,
+    @JsonProperty("first_name")
+    val firstName: String,
+    @JsonProperty("last_name")
+    val lastName: String?,
 )
