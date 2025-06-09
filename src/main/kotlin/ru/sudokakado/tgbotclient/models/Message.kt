@@ -7,7 +7,8 @@ import com.fasterxml.jackson.annotation.JsonProperty
 data class Message(
     @JsonProperty("message_id")
     val messageId: Int,
-    val from: User,
-    val text: String
-) {
-}
+    val from: User?,
+    val chat: Chat,
+    val text: String?,
+    val date: Int
+)
