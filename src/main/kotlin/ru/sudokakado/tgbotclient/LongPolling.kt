@@ -11,15 +11,12 @@ private val logger = KotlinLogging.logger {}
 
 @Service
 class LongPolling(
-    val restClientBuilder: RestClient.Builder,
-    final val bot: TelegramBot
+    restClientBuilder: RestClient.Builder,
+    val bot: TelegramBot
 ) {
 
-    private final val restClient: RestClient
-
-    init {
-        restClient = restClientBuilder.baseUrl("https://api.telegram.org/bot${bot.getBotToken()}").build()
-    }
+    private final val restClient: RestClient =
+        restClientBuilder.baseUrl("https://api.telegram.org/bot${bot.getBotToken()}").build()
 
     fun getUpdates(): List<Update> {
         logger.debug { "Sending request to ${bot.getBotToken()}." }
